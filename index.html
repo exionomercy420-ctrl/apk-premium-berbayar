@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>APK PREMIUM BERBAYAR PB STORE 🔥</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #121212;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    h1 {
+      background: #1e1e1e;
+      padding: 15px 0;
+      margin: 0;
+      font-size: 18px;
+      color: #ff8fcf;
+      border-bottom: 1px solid #333;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+    .card {
+      background: #1b1b1b;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+      padding: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .card:hover {
+      background: #232323;
+    }
+    .card img {
+      width: 70px;
+      height: 70px;
+      border-radius: 10px;
+      margin-bottom: 8px;
+    }
+    .card p {
+      font-size: 13px;
+      color: #eee;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.75);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 15px;
+      width: 85%;
+      max-width: 400px;
+      text-align: left;
+      color: #fff;
+    }
+    .harga {
+      background: #2c2c2c;
+      padding: 10px;
+      border-radius: 10px;
+      margin: 8px 0;
+      cursor: pointer;
+    }
+    .harga:hover, .harga.active {
+      background: #ff8fcf;
+      color: #000;
+    }
+    .notes {
+      font-size: 12px;
+      color: #bbb;
+      margin-top: 10px;
+      border-top: 1px solid #333;
+      padding-top: 10px;
+    }
+    button {
+      background: #ff8fcf;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 15px;
+      margin-top: 15px;
+      cursor: pointer;
+      font-weight: bold;
+      width: 100%;
+    }
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>APK PREMIUM BERBAYAR PB STORE 🔥</h1>
+
+  <div class="grid">
+    <div class="card" data-app="Meitu"><img src="aset/meitu.png"><p>Meitu</p></div>
+    <div class="card" data-app="Youku"><img src="aset/youku.png"><p>Youku</p></div>
+    <div class="card" data-app="Spotify"><img src="aset/spotify.png"><p>Spotify</p></div>
+    <div class="card" data-app="Wink"><img src="aset/wink.png"><p>Wink</p></div>
+    <div class="card" data-app="WeTV"><img src="aset/wetv.png"><p>WeTV</p></div>
+    <div class="card" data-app="Bstation"><img src="aset/bstation.png"><p>Bstation</p></div>
+    <div class="card" data-app="Disney"><img src="aset/disney.png"><p>Disney</p></div>
+    <div class="card" data-app="ChatGPT"><img src="aset/chatgpt.png"><p>ChatGPT</p></div>
+    <div class="card" data-app="Getcontact"><img src="aset/getcontact.png"><p>Getcontact</p></div>
+
+    <!-- Tambahan baru -->
+    <div class="card" data-app="Alight Motion"><img src="aset/alight.png"><p>Alight Motion</p></div>
+    <div class="card" data-app="Canva"><img src="aset/canva.png"><p>Canva</p></div>
+    <div class="card" data-app="Remini"><img src="aset/remini.png"><p>Remini</p></div>
+    <div class="card" data-app="Capcut"><img src="aset/capcut.png"><p>Capcut</p></div>
+    <div class="card" data-app="DramaBox"><img src="aset/dramabox.png"><p>DramaBox</p></div>
+    <div class="card" data-app="Vidio"><img src="aset/vidio.png"><p>Vidio</p></div>
+    <div class="card" data-app="Loklok"><img src="aset/loklok.png"><p>Loklok</p></div>
+    <div class="card" data-app="Netflix"><img src="aset/netflix.png"><p>Netflix</p></div>
+    <div class="card" data-app="Viu"><img src="aset/viu.png"><p>Viu</p></div>
+  </div>
+
+  <div id="popup" class="modal">
+    <div class="modal-content">
+      <h3 id="popupTitle"></h3>
+      <div id="hargaList"></div>
+      <div class="notes">
+        <b>Notes:</b><br>
+        * Selalu tanyakan stock terlebih dahulu<br>
+        * Shar ga boleh otak-atik apapun itu<br>
+        * Full garansi jika mengikuti rules<br>
+        * No reff kecuali kesalahan admin
+      </div>
+      <button id="reserveBtn" disabled>Reservasi Sekarang</button>
+    </div>
+  </div>
+
+  <script>
+    const hargaData = {
+      "Meitu": ["Meitu sharing 1 bulan : 15.000"],
+      "Youku": ["Youku sharing 1 bulan : 7.000"],
+      "Spotify": [
+        "Spotify famp 1b (fullgar) : 16.500",
+        "Spotify famp 2b (fullgar) : 28.000",
+        "Spotify indp 1b (fullgar) : 18.000",
+        "Spotify indp 1b (nogar) : 10.000",
+        "Spotify indp 3b (fullgar) : 32.000"
+      ],
+      "Wink": ["Wink priv android 7 hari : 16.000","Wink shar ios 7 hari : 9.000"],
+      "WeTV": ["WeTV shar 1 bulan : 8.000","WeTV priv 1 bulan : 28.000"],
+      "Bstation": ["Bstation sharing 1 bulan : 8.000","Bstation sharing 1 tahun : 13.000"],
+      "Disney": ["Disney sharing 1 bulan : 20.000"],
+      "ChatGPT": [
+        "1 bulan shar 8 user (fullgar) : 23.000",
+        "1 bulan shar 8 user (nogar) : 13.000"
+      ],
+      "Getcontact": [
+        "Getcontact 1 bulan : 12.500",
+        "Getcontact (cek nomor) : 1.500/no"
+      ],
+
+      /* Tambahan baru */
+      "Alight Motion": [
+        "AM shar 1 tahun : 5.000",
+        "AM priv 1 tahun : 7.000"
+      ],
+      "Canva": [
+        "Canva pro 1 bulan : 1.500",
+        "Canva pro 2 bulan : 2.500",
+        "Canva pro 3 bulan : 3.500",
+        "Canva pro 4 bulan : 4.500",
+        "Canva pro 5 bulan : 5.500",
+        "Canva pro 1 tahun : 8.500",
+        "Canva lifetime no renew : 11.000"
+      ],
+      "Remini": [
+        "Sharing 1 bulan : 10.000",
+        "Privat log apk 1 tahun lite : 27.000"
+      ],
+      "Capcut": [
+        "Capcut shar 7 hari : 5.000",
+        "Capcut shar 1 bulan 3 user : 9.000",
+        "Capcut priv 7 hari : 7.000",
+        "Capcut priv 1 bulan : 13.000"
+      ],
+      "DramaBox": ["DramaBox sharing 1b : 13.000"],
+      "Vidio": [
+        "Vidio platinum priv 1b : 32.000",
+        "Vidio platinum shar 1b2u : 18.000",
+        "Vidio mobile priv 1b : 22.000",
+        "Vidio mobile shar 1b2u : 13.000",
+        "Vidio platinum only tv priv 1y : 7.000 (Nogar)"
+      ],
+      "Loklok": [
+        "Sharing 1b : 15.000",
+        "Sharing standar 1b : 19.000"
+      ],
+      "Netflix": [
+        "1p2u (1 hari) : 3.000",
+        "1p2u (2 hari) : 5.000",
+        "1p2u (7 hari) : 7.000",
+        "1p1u (1 hari) : 4.500",
+        "1p1u (2 hari) : 6.500",
+        "1p1u (7 hari) : 10.500",
+        "semipriv (1 hari) : 5.000",
+        "semipriv (2 hari) : 7.000",
+        "semipriv (7 hari) : 14.000",
+        "1p2u (1 bulan) : 13.000",
+        "1p1u (1 bulan) : 23.500",
+        "semipriv (1 bulan) : 27.000"
+      ],
+      "Viu": [
+        "Viu priv anlim 1 bulan : 1.000",
+        "Viu priv anlim 2 bulan : 2.000",
+        "Viu priv anlim 3 bulan : 3.000",
+        "Viu priv anlim 1 tahun : 6.000"
+      ]
+    };
+
+    const popup = document.getElementById("popup");
+    const popupTitle = document.getElementById("popupTitle");
+    const hargaList = document.getElementById("hargaList");
+    const reserveBtn = document.getElementById("reserveBtn");
+    let selectedApp = "", selectedHarga = "";
+
+    document.querySelectorAll(".card").forEach(card => {
+      card.addEventListener("click", () => {
+        selectedApp = card.dataset.app;
+        popupTitle.innerText = selectedApp;
+        hargaList.innerHTML = "";
+        hargaData[selectedApp].forEach(h => {
+          const div = document.createElement("div");
+          div.className = "harga";
+          div.textContent = h;
+          div.onclick = () => {
+            document.querySelectorAll(".harga").forEach(el => el.classList.remove("active"));
+            div.classList.add("active");
+            selectedHarga = h;
+            reserveBtn.disabled = false;
+          };
+          hargaList.appendChild(div);
+        });
+        popup.style.display = "flex";
+      });
+    });
+
+    reserveBtn.onclick = () => {
+      const text = encodeURIComponent(`Halo admin, saya mau pesan ${selectedApp} - ${selectedHarga}`);
+      window.open(`https://wa.me/6288279019829?text=${text}`, "_blank");
+    };
+
+    popup.addEventListener("click", (e) => {
+      if (e.target === popup) popup.style.display = "none";
+    });
+  </script>
+</body>
+</html>
