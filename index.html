@@ -6,16 +6,65 @@
   <title>APK PREMIUM BERBAYAR PB STORE 🔥</title>
   <style>
     :root{
-      --bg:#121212; --card:#1b1b1b; --muted:#bbb; --accent:#ff8fcf; --accent-2:#ffb6e6;
+      --bg:#121212; 
+      --card:#1b1b1b; 
+      --muted:#bbb; 
+      --accent:#ff8fcf; /* 🌸 warna pink utama */
+      --accent-2:#ffb6e6;
     }
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family: 'Poppins', sans-serif;
       background:var(--bg);
-      color:#fff;
+      color:var(--accent);
       text-align:center;
+      position:relative;
+      overflow-x:hidden;
+      z-index:0;
     }
+
+    /* 🌸 Watermark besar di tengah (Opsi B) */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background-image: url('aset/logo.jpg'); /* ubah path logo jika perlu */
+      background-repeat:no-repeat;
+      background-position:center center;
+      background-size: 80%;
+      opacity:0.50;
+      z-index:-2;
+      pointer-events:none;
+      filter:saturate(0.6) brightness(0.9);
+    }
+
+    /* ⚡ Efek petir acak halus di background */
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      pointer-events:none;
+      background:transparent;
+      mix-blend-mode:screen;
+      animation:lightning 6s infinite;
+    }
+
+    @keyframes lightning{
+      0%, 7%, 100% { background: rgba(0,0,0,0); }
+      1% { background: radial-gradient(circle at 20% 10%, rgba(255,182,230,0.15) 0%, transparent 25%), radial-gradient(circle at 80% 70%, rgba(255,143,207,0.08) 0%, transparent 25%); }
+      3% { background: radial-gradient(circle at 40% 30%, rgba(255,143,207,0.12) 0%, transparent 18%); }
+      4% { background: rgba(255,143,207,0.06); }
+      10% { background: rgba(0,0,0,0); }
+      22% { background: radial-gradient(circle at 85% 20%, rgba(255,182,230,0.1) 0%, transparent 18%); }
+      23% { background: rgba(255,143,207,0.05); }
+      44% { background: radial-gradient(circle at 15% 80%, rgba(255,182,230,0.12) 0%, transparent 20%); }
+      45% { background: rgba(255,143,207,0.05); }
+      73% { background: radial-gradient(circle at 60% 25%, rgba(255,143,207,0.1) 0%, transparent 20%); }
+      74% { background: rgba(255,143,207,0.06); }
+    }
+
     h1{
       margin:0;
       padding:16px 0;
@@ -24,6 +73,18 @@
       font-size:18px;
       border-bottom:1px solid #333;
     }
+
+    /* 🖼️ Logo kecil di kiri teks header */
+    .header-logo{
+      width:28px;
+      height:28px;
+      object-fit:cover;
+      vertical-align:middle;
+      margin-right:8px;
+      border-radius:6px;
+      display:inline-block;
+    }
+
     .grid{
       display:grid;
       grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
@@ -40,10 +101,12 @@
       transition:transform .15s ease, background .15s;
       box-shadow:0 0 10px rgba(255,255,255,0.03);
       user-select:none;
+      color:var(--accent);
     }
     .card:hover{ transform:translateY(-4px) scale(1.02); background:#232323 }
     .card img{ width:70px; height:70px; object-fit:cover; border-radius:10px; display:block; margin:6px auto; }
-    .card p{ margin:6px 0 0; font-size:13px; color:#eee }
+    .card p{ margin:6px 0 0; font-size:13px; color:var(--accent) }
+
     /* modal */
     .modal{
       display:none;
@@ -64,7 +127,7 @@
       padding:18px;
       text-align:left;
       position:relative;
-      color:#fff;
+      color:var(--accent);
       animation:pop .18s ease;
     }
     @keyframes pop{ from{opacity:0; transform:scale(.96)} to{opacity:1; transform:scale(1)} }
@@ -78,14 +141,14 @@
       font-weight:700;
     }
     .close-btn:hover{ color:#fff }
-    #popupTitle{ margin:6px 0 12px; font-size:20px; color:#fff; font-weight:700 }
+    #popupTitle{ margin:6px 0 12px; font-size:20px; color:var(--accent); font-weight:700 }
     #hargaList .harga{
       background:#2c2c2c;
       padding:10px;
       border-radius:10px;
       margin:8px 0;
       cursor:pointer;
-      color:#eee;
+      color:var(--accent);
       transition:background .12s, color .12s;
     }
     #hargaList .harga:hover,#hargaList .harga.active{ background:var(--accent); color:#000 }
@@ -122,18 +185,26 @@
       font-weight:700;
     }
     .social-links a:hover{ background:var(--accent-2) }
-    footer{ color:#777; font-size:12px; margin:18px 0 30px }
+    footer{ color:var(--muted); font-size:12px; margin:18px 0 30px }
     /* responsive tweaks */
     @media (max-width:420px){
       .grid{ gap:10px; padding:14px }
       .card img{ width:64px; height:64px }
       .modal-content{ padding:16px }
+      .header-logo{ width:24px; height:24px; margin-right:6px }
     }
+
+    /* Pastikan semua teks yang mungkin spesifik berwarna juga dikover */
+    a, a:visited, p, span, li, b, strong, label, input, textarea, select, button, .card p, .social-caption, footer, .notes {
+      color: var(--accent) !important;
+    }
+    /* Agar tombol tetap terbaca */
+    .social-links a, button.primary { color: #000 !important; }
   </style>
 </head>
 <body>
 
-  <h1>APK PREMIUM BERBAYAR PB STORE 🔥</h1>
+  <h1><img src="aset/logo.jpg" alt="Logo" class="header-logo">APK PREMIUM BERBAYAR PB STORE 🔥</h1>
 
   <div class="grid">
     <!-- Semua card aplikasi (pastikan aset/* ada, tapi kalau belum ada tetap berfungsi tanpa gambar) -->
