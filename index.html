@@ -6,9 +6,9 @@
   <title>APK PREMIUM BERBAYAR PB STORE 🔥</title>
   <style>
     :root{
-      --bg:#121212; 
-      --card:#1b1b1b; 
-      --muted:#bbb; 
+      --bg:#121212;
+      --card:#1b1b1b;
+      --muted:#bbb;
       --accent:#ff8fcf; /* 🌸 warna pink utama */
       --accent-2:#ffb6e6;
     }
@@ -24,12 +24,12 @@
       z-index:0;
     }
 
-    /* 🌸 Watermark besar di tengah (Opsi B) */
+    /* watermark */
     body::before{
       content:"";
       position:fixed;
       inset:0;
-      background-image: url('aset/logo.jpg'); /* ubah path logo jika perlu */
+      background-image: url('aset/logo.jpg');
       background-repeat:no-repeat;
       background-position:center center;
       background-size: 80%;
@@ -39,7 +39,7 @@
       filter:saturate(0.6) brightness(0.9);
     }
 
-    /* ⚡ Efek petir acak halus di background */
+    /* lightning */
     body::after{
       content:"";
       position:fixed;
@@ -50,7 +50,6 @@
       mix-blend-mode:screen;
       animation:lightning 6s infinite;
     }
-
     @keyframes lightning{
       0%, 7%, 100% { background: rgba(0,0,0,0); }
       1% { background: radial-gradient(circle at 20% 10%, rgba(255,182,230,0.15) 0%, transparent 25%), radial-gradient(circle at 80% 70%, rgba(255,143,207,0.08) 0%, transparent 25%); }
@@ -74,7 +73,6 @@
       border-bottom:1px solid #333;
     }
 
-    /* 🖼️ Logo kecil di kiri teks header */
     .header-logo{
       width:28px;
       height:28px;
@@ -152,6 +150,15 @@
       transition:background .12s, color .12s;
     }
     #hargaList .harga:hover,#hargaList .harga.active{ background:var(--accent); color:#000 }
+
+    /* payment logos */
+    .payment-methods{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:10px; }
+    .payment{ background:#2c2c2c; border-radius:10px; padding:8px 10px; cursor:pointer; transition:background .12s, color .12s; display:flex; align-items:center; gap:8px; min-width:90px; justify-content:center;}
+    .payment img{ width:36px; height:36px; object-fit:contain; display:block; }
+    .payment span{ font-size:14px; color:var(--accent); }
+    .payment:hover, .payment.active{ background:var(--accent); color:#000; }
+    .payment:hover span, .payment.active span{ color:#000 !important; }
+
     .notes{
       font-size:12px;
       color:var(--muted);
@@ -171,6 +178,7 @@
       cursor:pointer;
     }
     button.primary:disabled{ opacity:.5; cursor:not-allowed }
+
     /* social & footer */
     .social-section{ margin:26px 0 6px; text-align:center }
     .social-caption{ font-style:italic; color:var(--accent-2); margin-bottom:10px }
@@ -186,7 +194,7 @@
     }
     .social-links a:hover{ background:var(--accent-2) }
     footer{ color:var(--muted); font-size:12px; margin:18px 0 30px }
-    /* responsive tweaks */
+
     @media (max-width:420px){
       .grid{ gap:10px; padding:14px }
       .card img{ width:64px; height:64px }
@@ -194,11 +202,10 @@
       .header-logo{ width:24px; height:24px; margin-right:6px }
     }
 
-    /* Pastikan semua teks yang mungkin spesifik berwarna juga dikover */
+    /* ensure text color */
     a, a:visited, p, span, li, b, strong, label, input, textarea, select, button, .card p, .social-caption, footer, .notes {
       color: var(--accent) !important;
     }
-    /* Agar tombol tetap terbaca */
     .social-links a, button.primary { color: #000 !important; }
   </style>
 </head>
@@ -207,7 +214,7 @@
   <h1><img src="aset/logo.jpg" alt="Logo" class="header-logo">APK PREMIUM BERBAYAR PB STORE 🔥</h1>
 
   <div class="grid">
-    <!-- Semua card aplikasi (pastikan aset/* ada, tapi kalau belum ada tetap berfungsi tanpa gambar) -->
+    <!-- Semua card aplikasi (sesuai file asli) -->
     <div class="card" data-app="Meitu"><img src="aset/meitu.png" alt="Meitu"><p>Meitu</p></div>
     <div class="card" data-app="Youku"><img src="aset/youku.png" alt="Youku"><p>Youku</p></div>
     <div class="card" data-app="Spotify"><img src="aset/spotify.png" alt="Spotify"><p>Spotify</p></div>
@@ -245,6 +252,16 @@
       <div id="popupTitle"></div>
       <div id="hargaList"></div>
 
+      <!-- PAYMENT LOGOS (letakkan file di folder aset/) -->
+      <div class="payment-methods" id="paymentMethods">
+        <div class="payment" data-pay="GoPay"><img src="aset/gopay.png" alt="GoPay"><span>GoPay</span></div>
+        <div class="payment" data-pay="Dana"><img src="aset/dana.png" alt="Dana"><span>Dana</span></div>
+        <div class="payment" data-pay="QRIS"><img src="aset/qris.png" alt="QRIS"><span>QRIS</span></div>
+        <div class="payment" data-pay="ShopeePay"><img src="aset/shopee.png" alt="ShopeePay"><span>ShopeePay</span></div>
+        <div class="payment" data-pay="OVO"><img src="aset/ovo.png" alt="OVO"><span>OVO</span></div>
+        <div class="payment" data-pay="Seabank"><img src="aset/seabank.png" alt="Seabank"><span>Seabank</span></div>
+      </div>
+
       <div class="notes">
         <b>Notes :</b><br>
         * Selalu tanyakan stock terlebih dahulu<br>
@@ -266,7 +283,6 @@
       <a href="https://wa.me/message/WJQDFEAVBQ2SB1" target="_blank" rel="noopener">WhatsApp</a>
     </div>
 
-    <!-- tombol Testimoni di bawah sendiri -->
     <div class="social-links" style="margin-top:6px;">
       <a href="https://t.me/proofpetirbiru" target="_blank" rel="noopener">📸 Testimoni</a>
     </div>
@@ -281,11 +297,13 @@
     const hargaList = document.getElementById('hargaList');
     const reserveBtn = document.getElementById('reserveBtn');
     const closePopupBtn = document.getElementById('closePopup');
+    const paymentBtns = document.querySelectorAll('.payment');
 
     let selectedApp = '';
     let selectedHarga = '';
+    let selectedPay = '';
 
-    // data semua harga (lengkap sesuai yang kamu minta)
+    // data semua harga (sama persis seperti file asli yang kamu kirim)
     const hargaData = {
       "Meitu": [
         "Meitu sharing 1 bulan : 15.000"
@@ -380,7 +398,6 @@
         "Viu priv anlim 3 bulan : 3.000",
         "Viu priv anlim 1 tahun : 6.000"
       ],
-
       /* ========== DAFTAR HARGA APK BARU ========== */
       "YouTube": [
         "family plan ( famplan ) - 1 bulan : 7.500",
@@ -416,7 +433,9 @@
     // helper: bersihkan pilihan
     function resetSelection(){
       selectedHarga = '';
+      selectedPay = '';
       document.querySelectorAll('#hargaList .harga').forEach(el=>el.classList.remove('active'));
+      document.querySelectorAll('.payment').forEach(el=>el.classList.remove('active'));
       reserveBtn.disabled = true;
     }
 
@@ -442,11 +461,11 @@
             div.className = 'harga';
             div.textContent = h;
             div.addEventListener('click', ()=>{
-              // toggle active (tandai hanya 1)
+              // tandai hanya 1 harga aktif
               document.querySelectorAll('#hargaList .harga').forEach(el=>el.classList.remove('active'));
               div.classList.add('active');
               selectedHarga = h;
-              reserveBtn.disabled = false;
+              updateReserveState();
             });
             hargaList.appendChild(div);
           });
@@ -458,10 +477,25 @@
           hargaList.appendChild(none);
         }
 
+        // atur event listener payment buttons (pastikan tidak dobel)
+        document.querySelectorAll('.payment').forEach(pbtn=>{
+          pbtn.onclick = ()=>{
+            document.querySelectorAll('.payment').forEach(x=>x.classList.remove('active'));
+            pbtn.classList.add('active');
+            selectedPay = pbtn.dataset.pay;
+            updateReserveState();
+          };
+        });
+
         popup.style.display = 'flex';
         popup.setAttribute('aria-hidden','false');
       });
     });
+
+    // update tombol reservasi -> aktif jika ada harga dan metode pembayaran dipilih
+    function updateReserveState(){
+      reserveBtn.disabled = !(selectedHarga && selectedPay);
+    }
 
     // close X
     closePopupBtn.addEventListener('click', closePopupAndReset);
@@ -473,12 +507,13 @@
 
     // reservasi tombol
     reserveBtn.addEventListener('click', ()=>{
-      if (!selectedHarga){
-        alert('Pilih daftar harga terlebih dahulu.');
+      if (!selectedHarga || !selectedPay){
+        alert('Pilih daftar harga dan metode pembayaran terlebih dahulu.');
         reserveBtn.disabled = true;
         return;
       }
-      const text = encodeURIComponent(`Halo admin, saya mau pesan ${selectedApp} - ${selectedHarga}`);
+      // sertakan metode pembayaran di pesan WA
+      const text = encodeURIComponent(`Halo admin, saya mau pesan ${selectedApp} - ${selectedHarga} | Pembayaran via ${selectedPay}`);
       // reset & close sebelum open WA agar state bersih
       closePopupAndReset();
       window.open(`https://wa.me/6288279019829?text=${text}`,'_blank');
