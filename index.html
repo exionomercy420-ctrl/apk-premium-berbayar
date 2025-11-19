@@ -296,7 +296,8 @@
         * Selalu tanyakan stock terlebih dahulu<br>
         * Shar ga boleh otak-atik apapun itu !<br>
         * Full garansi jika mengikuti rules<br>
-        * No reff kec kesalahan admin
+        * No reff kec kesalahan admin<br>
+        * Harga sewaktu-waktu dapat berubah
       </div>
 
       <button id="reserveBtn" class="primary" disabled>Reservasi Sekarang</button>
@@ -542,7 +543,7 @@
         return;
       }
       // sertakan metode pembayaran di pesan WA
-      const text = encodeURIComponent(`Halo admin, saya mau pesan ${selectedApp} - ${selectedHarga} | Pembayaran via ${selectedPay}`);
+      const text = encodeURIComponent(`Halo admin, saya mau pesan ${selectedApp} - ${selectedHarga} | Pembayaran via ${selectedPay}. Apakah ada perubahan harga untuk aplikasi ini?.`);
       // reset & close sebelum open WA agar state bersih
       closePopupAndReset();
       window.open(`https://wa.me/6288279019829?text=${text}`,'_blank');
