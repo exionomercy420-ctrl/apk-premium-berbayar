@@ -543,7 +543,8 @@
         return;
       }
       // sertakan metode pembayaran di pesan WA
-      const text = encodeURIComponent(`Halo admin, saya mau pesan ${selectedApp} - ${selectedHarga} | Pembayaran via ${selectedPay} Apakah ada perubahan harga untuk aplikasi ini?`);
+      const text = encodeURIComponent(`Halo admin, saya mau pesan ${selectedApp} - ${selectedHarga} | Pembayaran via ${selectedPay} 
+        Apakah ada perubahan harga untuk aplikasi ini?`);
       // reset & close sebelum open WA agar state bersih
       closePopupAndReset();
       window.open(`https://wa.me/6288279019829?text=${text}`,'_blank');
