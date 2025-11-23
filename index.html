@@ -236,11 +236,175 @@
       color: var(--accent) !important;
     }
     .social-links a, button.primary { color: #000 !important; }
+    
+    .search-container {
+  width: 100%;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+#searchInput {
+  width: 90%;
+  max-width: 450px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #333;
+  background: #1e1e1e;
+  color: var(--accent);
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s;
+}
+
+#searchInput:focus {
+  border-color: var(--accent);
+}
+
+.search-container {
+  width: 100%;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.search-box {
+  position: relative;
+  width: 90%;
+  max-width: 450px;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: var(--accent);
+  font-size: 16px;
+  pointer-events: none;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 10px 14px 10px 38px; /* tambah ruang kiri untuk ikon */
+  border-radius: 10px;
+  border: 1px solid #333;
+  background: #1e1e1e;
+  color: var(--accent);
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s;
+}
+
+#searchInput:focus {
+  border-color: var(--accent);
+}
+/* Tombol Musik di Dalam Search Box */
+.music-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: var(--accent);
+  cursor: pointer;
+}
+
+/* tombol musik di dalam search */
+.music-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* search box wajib relative */
+.search-box {
+  position: relative;
+}
+
+/* === FLOATING PLAYER === */
+.floating-player {
+  position: fixed;
+  top: 70px; /* muncul di bawah search */
+  left: 50%;
+  transform: translateX(-50%) translateY(-30px);
+  background: rgba(20,20,20,0.75);
+  box-shadow: 0 6px 25px rgba(0,0,0,0.45);
+  backdrop-filter: blur(10px);
+  padding: 10px 14px;
+  border-radius: 18px;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s ease;
+}
+
+.floating-player.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.fp-inner {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.fp-btn {
+  background: rgba(255,255,255,0.08);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  color: var(--accent);
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.fp-btn:active {
+  transform: scale(0.9);
+}
+
+/* auto hide animation when scrolling */
+.floating-player.hide {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(-20px);
+}
   </style>
 </head>
 <body>
 
   <h1><img src="aset/logo.jpg" alt="Logo" class="header-logo">APK PREMIUM BERBAYAR PB STORE 🔥</h1>
+  
+<div class="search-container">
+  <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <button id="musicBtn" class="music-btn">🎵</button>
+    <input type="text" id="searchInput" placeholder="Cari aplikasi..." />
+  </div>
+</div>
+
+<!-- FLOATING PLAYER -->
+<div id="floatingPlayer" class="floating-player">
+    <div class="fp-inner">
+        <button id="prevBtn" class="fp-btn">⏮️</button>
+        <button id="playPauseBtn" class="fp-btn">▶️</button>
+        <button id="nextBtn" class="fp-btn">⏭️</button>
+        <button id="muteBtn" class="fp-btn">🔈</button>
+    </div>
+</div>
+
+<audio id="audioPlayer"></audio>
 
   <div class="grid">
     <!-- Semua card aplikasi (sesuai file asli) -->
@@ -253,7 +417,6 @@
     <div class="card" data-app="Disney"><img src="aset/disney.png" alt="Disney"><p>Disney</p></div>
     <div class="card" data-app="ChatGPT"><img src="aset/chatgpt.png" alt="ChatGPT"><p>ChatGPT</p></div>
     <div class="card" data-app="Getcontact"><img src="aset/getcontact.png" alt="Getcontact"><p>Getcontact</p></div>
-
     <div class="card" data-app="Alight Motion"><img src="aset/alight.png" alt="Alight Motion"><p>Alight Motion</p></div>
     <div class="card" data-app="Canva"><img src="aset/canva.png" alt="Canva"><p>Canva</p></div>
     <div class="card" data-app="Remini"><img src="aset/remini.png" alt="Remini"><p>Remini</p></div>
@@ -263,8 +426,6 @@
     <div class="card" data-app="Loklok"><img src="aset/loklok.png" alt="Loklok"><p>Loklok</p></div>
     <div class="card" data-app="Netflix"><img src="aset/netflix.png" alt="Netflix"><p>Netflix</p></div>
     <div class="card" data-app="Viu"><img src="aset/viu.png" alt="Viu"><p>Viu</p></div>
-
-    <!-- APK baru yang ditambahkan -->
     <div class="card" data-app="YouTube"><img src="aset/youtube.png" alt="YouTube"><p>YouTube</p></div>
     <div class="card" data-app="Melolo"><img src="aset/melolo.png" alt="Melolo"><p>Melolo</p></div>
     <div class="card" data-app="Reelshort"><img src="aset/reels.png" alt="Reelshort"><p>Reelshort</p></div>
@@ -272,6 +433,17 @@
     <div class="card" data-app="Picsart"><img src="aset/picsart.png" alt="Picsart"><p>Picsart</p></div>
     <div class="card" data-app="Iqiyi"><img src="aset/iqiyi.png" alt="Iqiyi"><p>Iqiyi</p></div>
     <div class="card" data-app="Ibis Paint X"><img src="aset/ibis.png" alt="Ibis Paint X"><p>Ibis Paint X</p></div>
+    <div class="card" data-app="Photoroom">
+    <img src="aset/photoroom.png" alt="Photoroom"><p>Photoroom</p></div>
+    <div class="card" data-app="Microsoft 365">
+    <img src="aset/microsoft365.png" alt="Microsoft 365"><p>Microsoft 365</p></div>
+    <div class="card" data-app="Express VPN">
+    <img src="aset/vpn.png" alt="Express VPN">
+    <p>Express VPN</p></div>
+    <div class="card" data-app="Lightroom">
+    <img src="aset/lightroom.png" alt="Lightroom"><p>Lightroom</p></div>
+    <div class="card" data-app="BeautyPlus">
+    <img src="aset/beautyplus.png" alt="BeautyPlus"><p>BeautyPlus</p></div>
   </div>
 
   <!-- Modal / Popup -->
@@ -306,7 +478,7 @@
 
   <!-- Social -->
   <div class="social-section">
-    <div class="social-caption">Jika ada yang ingin di tanyakan klik aja tombol di bawah, jangan lupa di follow juga wak geng</div>
+    <div class="social-caption">Jika ada yang ingin di tanyakan klik aja tombol di bawah, garansi hanya berlaku untuk kondisi tertentu di saat penyerahan akun akan di tambahkan keterangan </div>
     <div class="social-links">
       <a href="https://t.me/petirbirustore" target="_blank" rel="noopener">Telegram</a>
       <a href="https://www.instagram.com/petirbirustore?igsh=ajExN3hsN2R4a3Vi" target="_blank" rel="noopener">Instagram</a>
@@ -410,17 +582,17 @@
       ],
       "Netflix": [
         "1p2u ( 1 hari ) : 3.000",
-        "1p2u ( 2 hari ) : 5.000",
-        "1p2u ( 7 hari ) : 7.000",
+        "1p2u ( 3 hari ) : 6.000",
+        "1p2u ( 7 hari ) : 9.000",
+        "1p2u ( 1 bulan ) : 16.000",
         "1p1u ( 1 hari ) : 4.500",
-        "1p1u ( 2 hari ) : 6.500",
+        "1p1u ( 3 hari ) : 8.000",
         "1p1u ( 7 hari ) : 10.500",
+        "1p1u ( 1 bulan ) : 24.000",
         "semipriv ( 1 hari ) : 5.000",
         "semipriv ( 2 hari ) : 7.000",
         "semipriv ( 7 hari ) : 14.000",
-        "1p2u ( 1 bulan ) : 13.000",
-        "1p1u ( 1 bulan ) : 23.500",
-        "semipriv ( 1 bulan ) : 27.000"
+        "semipriv ( 1 bulan ) : 27.000",
       ],
       "Viu": [
         "Viu priv anlim 1 bulan : 1.000",
@@ -428,13 +600,11 @@
         "Viu priv anlim 3 bulan : 3.000",
         "Viu priv anlim 1 tahun : 6.000"
       ],
-      /* ========== DAFTAR HARGA APK BARU ========== */
       "YouTube": [
         "family plan ( famplan ) - 1 bulan : 7.500",
         "family plan ( famplan ) - 2 bulan : 14.000",
         "individual plan ( indplan ) - 13.000 ( email seller )",
         "individual plan ( indplan ) - 9.000 ( email buyyer )",
-        "Notes : selalu tanyakan stock terlebih dahulu; full garansi jika mengikuti rules; no reff kec kesalahan admin; khusus email buyyer WAJIB YANG BELOM PERNAH PREM YT"
       ],
       "Melolo": [
         "Melolo sharing 1 b : 8.500",
@@ -457,7 +627,23 @@
       ],
       "Ibis Paint X": [
         "Ibis Paint X 1 tahun : 20.000"
-      ]
+      ],
+      "Photoroom": [
+        "Photoroom 1 tahun : 23.000"
+      ],
+      "Microsoft 365": [
+        "Microsoft 365 1 bulan : 9.000"
+      ],
+      "Express VPN": [
+        "Express private 1 bulan : 13.000"
+      ],
+      "Lightroom": [
+        "Lightroom 1 tahun : 18.000"
+      ],
+      "BeautyPlus": [
+        "BeautyPlus Android 6 bulan : 15.000",
+        "BeautyPlus iOS 1 tahun : 20.000"
+      ],
     };
 
     // helper: bersihkan pilihan
@@ -555,6 +741,107 @@
         closePopupAndReset();
       }
     });
+    // SEARCH FILTER
+const searchInput = document.getElementById("searchInput");
+
+searchInput.addEventListener("keyup", function () {
+  const keyword = searchInput.value.toLowerCase();
+  const cards = document.querySelectorAll(".card");
+
+  cards.forEach(card => {
+    const appName = card.dataset.app.toLowerCase();
+    if (appName.includes(keyword)) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
+});
+// === FLOATING MUSIC PLAYER ===
+const musicBtn = document.getElementById("musicBtn");
+const floatingPlayer = document.getElementById("floatingPlayer");
+
+const playPauseBtn = document.getElementById("playPauseBtn");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const muteBtn = document.getElementById("muteBtn");
+const audio = document.getElementById("audioPlayer");
+
+// Playlist musik (isi link dari chatbox)
+const PLAYLIST = [
+  "https://files.catbox.moe/jy2mwq.mp3"
+];
+
+let indexTrack = 0;
+let isPlaying = false;
+
+// toggle tampil player
+musicBtn.addEventListener("click", () => {
+  floatingPlayer.classList.toggle("show");
+});
+
+// load lagu
+function loadTrack(i) {
+  indexTrack = (i + PLAYLIST.length) % PLAYLIST.length;
+  audio.src = PLAYLIST[indexTrack];
+}
+
+// play
+function playTrack() {
+  if (!audio.src) loadTrack(0);
+  audio.play();
+  isPlaying = true;
+  playPauseBtn.textContent = "⏸️";
+}
+
+// pause
+function pauseTrack() {
+  audio.pause();
+  isPlaying = false;
+  playPauseBtn.textContent = "▶️";
+}
+
+playPauseBtn.addEventListener("click", () => {
+  isPlaying ? pauseTrack() : playTrack();
+});
+
+nextBtn.addEventListener("click", () => {
+  loadTrack(indexTrack + 1);
+  if (isPlaying) playTrack();
+});
+
+prevBtn.addEventListener("click", () => {
+  loadTrack(indexTrack - 1);
+  if (isPlaying) playTrack();
+});
+
+muteBtn.addEventListener("click", () => {
+  audio.muted = !audio.muted;
+  muteBtn.textContent = audio.muted ? "🔇" : "🔈";
+});
+
+// auto next saat selesai
+audio.addEventListener("ended", () => {
+  loadTrack(indexTrack + 1);
+  playTrack();
+});
+
+// === AUTO HIDE SAAT SCROLL ===
+let lastScrollY = window.scrollY;
+
+window.addEventListener("scroll", () => {
+  if (!floatingPlayer.classList.contains("show")) return;
+
+  if (window.scrollY > lastScrollY) {
+    // scroll turun → sembunyikan
+    floatingPlayer.classList.add("hide");
+  } else {
+    // scroll naik → tampil lagi
+    floatingPlayer.classList.remove("hide");
+  }
+
+  lastScrollY = window.scrollY;
+});
   </script>
 </body>
 </html>
