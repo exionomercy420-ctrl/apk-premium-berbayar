@@ -380,6 +380,34 @@
   pointer-events: none;
   transform: translateX(-50%) translateY(-20px);
 }
+/* nama lagu */
+.fp-title {
+  text-align: center;
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: var(--accent);
+  opacity: 0.9;
+}
+
+/* progress bar */
+.fp-seek {
+  width: 100%;
+  appearance: none;
+  height: 4px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.25);
+  outline: none;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.fp-seek::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+}
   </style>
 </head>
 <body>
@@ -396,6 +424,10 @@
 
 <!-- FLOATING PLAYER -->
 <div id="floatingPlayer" class="floating-player">
+    <div class="fp-title" id="trackTitle">Loading...</div>
+
+    <input type="range" id="seekBar" class="fp-seek" value="0" min="0" max="100">
+
     <div class="fp-inner">
         <button id="prevBtn" class="fp-btn">⏮️</button>
         <button id="playPauseBtn" class="fp-btn">▶️</button>
@@ -766,26 +798,44 @@ const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 const muteBtn = document.getElementById("muteBtn");
 const audio = document.getElementById("audioPlayer");
+const trackTitle = document.getElementById("trackTitle");
+const seekBar = document.getElementById("seekBar");
 
-// Playlist musik (isi link dari chatbox)
+// Playlist musik
 const PLAYLIST = [
-  "https://files.catbox.moe/jy2mwq.mp3"
+  { url: "https://files.catbox.moe/wj8cf4.mp3", title: "Ini berlebihan" },
+  { url: "https://files.catbox.moe/6n6ngh.mp3", title: "Bertaut" },
+  { url: "https://files.catbox.moe/li3gfa.mp3", title: "Rayuan Perempuan Gila" },
+  { url: "https://files.catbox.moe/6prw70.mp3", title: "Halu" },
+  { url: "https://files.catbox.moe/9iu8t7.mp3", title: "Terpikat Senyummu" },
+  { url: "https://files.catbox.moe/iwrdct.mp3", title: "Berisik" },
+  { url: "https://files.catbox.moe/9t1mfq.mp3", title: "Sedia Aku Sebelum Hujan" },
+  { url: "https://files.catbox.moe/8mnmsr.mp3", title: "Satu Bulan"},
 ];
 
 let indexTrack = 0;
 let isPlaying = false;
 
-// toggle tampil player
+// buka/tutup player
 musicBtn.addEventListener("click", () => {
   floatingPlayer.classList.toggle("show");
 });
 
+// Ambil nama file saja dari URL
+function extractName(url) {
+  return decodeURIComponent(url.split("/").pop());
+}
+
 // load lagu
 function loadTrack(i) {
   indexTrack = (i + PLAYLIST.length) % PLAYLIST.length;
-  audio.src = PLAYLIST[indexTrack];
+  // ambil link musik
+  audio.src = PLAYLIST[indexTrack].url;
+  // ambil judul musik custom
+  trackTitle.textContent = PLAYLIST[indexTrack].title;
+  // reset progress bar
+  seekBar.value = 0;
 }
-
 // play
 function playTrack() {
   if (!audio.src) loadTrack(0);
@@ -820,28 +870,38 @@ muteBtn.addEventListener("click", () => {
   muteBtn.textContent = audio.muted ? "🔇" : "🔈";
 });
 
-// auto next saat selesai
+// progress bar berjalan otomatis
+audio.addEventListener("timeupdate", () => {
+  seekBar.value = (audio.currentTime / audio.duration) * 100;
+});
+
+// drag progress bar
+seekBar.addEventListener("input", () => {
+  audio.currentTime = (seekBar.value / 100) * audio.duration;
+});
+
+// auto next saat lagu selesai
 audio.addEventListener("ended", () => {
   loadTrack(indexTrack + 1);
   playTrack();
 });
 
-// === AUTO HIDE SAAT SCROLL ===
+// === AUTO HIDE PLAYER SAAT SCROLL ===
 let lastScrollY = window.scrollY;
 
 window.addEventListener("scroll", () => {
   if (!floatingPlayer.classList.contains("show")) return;
 
   if (window.scrollY > lastScrollY) {
-    // scroll turun → sembunyikan
     floatingPlayer.classList.add("hide");
   } else {
-    // scroll naik → tampil lagi
     floatingPlayer.classList.remove("hide");
   }
-
   lastScrollY = window.scrollY;
 });
+
+// load pertama
+loadTrack(0);
   </script>
 </body>
 </html>
